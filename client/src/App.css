@@ -1,0 +1,130 @@
+.rainfall-alert-system {
+  font-family: Arial, sans-serif;
+  text-align: center;
+
+  /* Flexbox for vertical and horizontal centering */
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  flex-direction: column;
+  align-items: center;
+  /* Center vertically */
+  height: auto;
+  /* Take full height of the viewport */
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.button-group Button {
+  margin: 0 5px;
+}
+
+
+.date {
+  font-size: 45px;
+  position: absolute;
+  top: 200px;
+  left: 80px;
+  font-weight: bold;
+  width: 300px;           /* Fixed width */
+  white-space: normal;    /* Allow wrapping */
+  word-break: break-word; /* Break long words if needed */
+  line-height: 1.1;
+  text-align: center;
+}
+
+#legend {
+  font-size: 18px;
+}
+
+#legend div {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+#legend span {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.municipality, .municipality-container {
+  position: absolute;
+  height: 1380px;
+  width: 700px;
+  top: 90px;
+  left: 95px;
+  z-index: 2; 
+}
+
+#grid-coordinates {
+  position: relative;
+  height: 1550px;
+  width: 890px;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-image: url("/Map/grid-coordinates.png");
+  z-index: -2;
+}
+
+
+/* Media Query for Phone Screens */
+@media (max-width: 768px) {
+
+  /* Adjust the date text size and margin for smaller screens */
+  .date {
+    font-size: 17px;
+    /* Smaller font size */
+    margin: 15px;
+    /* Reduce margin */
+    text-align: left;
+    /* Center the date text */
+  }
+
+  /* Adjust the legend width and margin for smaller screens */
+  #legend {
+    width: 80%;
+    /* Increase width to 80% of screen */
+    margin: 5px 10px;
+    /* Reduce margin */
+    font-size: 10px;
+    /* Slightly smaller font size for mobile */
+  }
+
+  #legend div {
+    margin: 3px;
+    /* Reduce margin between legend items */
+  }
+
+  #legend span {
+    width: 20px;
+    /* Reduce the size of the color swatches */
+    height: 20px;
+    /* Adjust height */
+    margin-right: 8px;
+    /* Reduce margin */
+  }
+
+  /* Adjust text for smaller screens */
+  .rainfall-alert-system h1 {
+    font-size: 24px;
+    /* Smaller font for heading */
+  }
+
+  .rainfall-alert-system .button-group {
+    flex-direction: column;
+    /* Stack the buttons vertically */
+    align-items: center;
+    /* Center buttons horizontally */
+  }
+
+  .rainfall-alert-system .button-group button {
+    margin-bottom: 10px;
+    /* Add space between buttons */
+  }
+}
