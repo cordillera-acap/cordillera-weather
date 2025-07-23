@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { FaTable, FaInfoCircle } from 'react-icons/fa';
 import '../App.css';
 
-const API_URL = 'http://localhost:3001/api/cordillera/full'; // Adjust based on your server setup
+const API_URL = import.meta.env.VITE_API_URL; // Vite uses import.meta.env
 
 const provinceData = {
     "Calanasan": "Apayao",
