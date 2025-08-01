@@ -45,15 +45,11 @@ const RainfallMap = ({
         {/* Map */}
         <div id='grid-coordinates'>
             <p className='date'>
-                {date.includes(',')
-                    ? (
-                        <>
-                            {getIlocanoDate(date).split(',')[0]}<br />
-                            {getIlocanoDate(date).split(',').slice(1).join(',')}
-                        </>
-                    )
-                    : date
-                }
+                {Array.isArray(date) ? (
+                    <>
+                      {date[0]}<br />{date[1]}
+                    </>
+                ) : date}
             </p>
             <img
                 src='/Map/background-items.png'

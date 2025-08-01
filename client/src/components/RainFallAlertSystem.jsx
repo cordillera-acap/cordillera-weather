@@ -99,21 +99,15 @@ const provinceData = {
     "Villaviciosa": "Abra"
 };
 
-const ilocanoWeekdays = {
-    'Monday': 'Lunes',
-    'Tuesday': 'Martes',
-    'Wednesday': 'Miyerkules',
-    'Thursday': 'Huwebes',
-    'Friday': 'Biernes',
-    'Saturday': 'Sabado',
-    'Sunday': 'Domingo'
-};
-
-const getIlocanoDate = (dateStr) => {
-    if (!dateStr.includes(',')) return dateStr;
-    const [weekday, ...rest] = dateStr.split(',');
-    const ilocanoWeekday = ilocanoWeekdays[weekday.trim()] || weekday;
-    return [ilocanoWeekday, ...rest].join(',');
+// Helper to format date as ["Weekday", "Month Day"]
+const formatDateWithDay = (dateStr) => {
+    if (!dateStr) return '';
+    const dateObj = new Date(dateStr);
+    if (isNaN(dateObj)) return dateStr;
+    const weekday = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+    const month = dateObj.toLocaleDateString('en-US', { month: 'long' });
+    const day = dateObj.getDate();
+    return [weekday, `${month} ${day}`];
 };
 
 const getImagePath = (municipality, rainfall) => {
@@ -160,7 +154,7 @@ const RainfallAlertSystem = () => {
     };
 
     const dates = [...new Set(weatherData.map(item => item.date))];
-    const date = dates[selectedDay] || 'date';
+    const date = formatDateWithDay(dates[selectedDay]) || 'date';
     const municipalities = getDayData(selectedDay).map(item => [item.municity, item.rainfall_desc]);
 
     // Save single map image
@@ -178,7 +172,7 @@ const RainfallAlertSystem = () => {
                 const imageUrl = canvas.toDataURL('image/png');
                 const link = document.createElement('a');
                 link.href = imageUrl;
-                link.download = date ? `${date}.png` : 'map-image.png';
+                link.download = Array.isArray(date) ? `${date[0]} ${date[1]}.png` : 'map-image.png';
                 link.click();
                 setLoading(false);
             }).catch(error => {
@@ -206,9 +200,10 @@ const RainfallAlertSystem = () => {
                         logging: false
                     });
                     const imageUrl = canvas.toDataURL('image/png');
+                    const formattedDate = formatDateWithDay(dates[idx]);
                     const link = document.createElement('a');
                     link.href = imageUrl;
-                    link.download = dates[idx] ? `${dates[idx]}.png` : `map-image-day${idx + 1}.png`;
+                    link.download = Array.isArray(formattedDate) ? `${formattedDate[0]} ${formattedDate[1]}.png` : `map-image-day${idx + 1}.png`;
                     link.click();
                 } catch (error) {
                     console.error(`Error capturing map for day ${idx + 1}:`, error);
@@ -245,10 +240,9 @@ const RainfallAlertSystem = () => {
             {activeTab === 'map' ? (
                 <RainfallMap
                     date={date}
-                    dates={dates}
+                    dates={dates.map(formatDateWithDay)}
                     municipalities={municipalities}
                     getImagePath={getImagePath}
-                    getIlocanoDate={getIlocanoDate}
                     loading={loading}
                     captureMapAsImage={captureMapAsImage}
                     captureAllMapsAsImages={captureAllMapsAsImages}
