@@ -1,5 +1,4 @@
 import React from 'react';
-import html2canvas from 'html2canvas';
 import { Button, Spinner } from 'react-bootstrap';
 import { FaCamera } from 'react-icons/fa';
 
@@ -8,7 +7,6 @@ const RainfallMap = ({
     dates,
     municipalities,
     getImagePath,
-    getIlocanoDate,
     loading,
     captureMapAsImage,
     captureAllMapsAsImages,

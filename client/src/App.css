@@ -13,6 +13,19 @@
   /* Take full height of the viewport */
 }
 
+/* Date range displayed under the main title */
+.rainfall-alert-system .date-range {
+  margin-top: 6px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #2d3748;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
 .button-group {
   display: flex;
   flex-direction: row;
@@ -21,6 +34,71 @@
 
 .button-group Button {
   margin: 0 5px;
+}
+
+/* New toolbar styles for larger, clearer controls */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1000px;
+  padding: 12px 18px;
+  box-sizing: border-box;
+  gap: 12px;
+  align-items: center;
+}
+
+.toolbar-left, .toolbar-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.toolbar-button {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease;
+  min-width: 160px;
+  box-shadow: 0 2px 6px rgba(15,23,42,0.06);
+}
+
+.toolbar-button.outline {
+  background: #f7f9fb;
+}
+
+.toolbar-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+}
+
+.toolbar-button.active {
+  border-color: #2b6cb0;
+  background: linear-gradient(180deg,#3182ce22,#2b6cb033);
+}
+
+.toolbar-icon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.toolbar-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .toolbar-button { min-width: unset; justify-content: center; }
+  .toolbar-icon { margin-right: 8px; }
 }
 
 
@@ -114,6 +192,13 @@
   .rainfall-alert-system h1 {
     font-size: 24px;
     /* Smaller font for heading */
+  }
+
+  .rainfall-alert-system .date-range {
+    font-size: 14px;
+    padding: 4px 8px;
+    margin-top: 4px;
+    margin-bottom: 8px;
   }
 
   .rainfall-alert-system .button-group {

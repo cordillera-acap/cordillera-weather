@@ -1,10 +1,10 @@
 import React from 'react';
-import RainfallAlertSystem from './components/RainFallAlertSystem';
+import RainfallAlertSystemClean from './components/RainfallAlertSystemClean';
 
 function App() {
     return (
         <div className="App">
-            <RainfallAlertSystem />
+            <RainfallAlertSystemClean />
         </div>
     );
 }
